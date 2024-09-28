@@ -14,6 +14,6 @@ public class Journal
 
     public void LoadFromFile(String file) 
     {
-
+        
     }
 }
