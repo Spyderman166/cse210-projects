@@ -29,27 +29,23 @@ class Program
             //ask user for input and continue or quit
             Console.WriteLine("Press enter to continue, type 'quit' to exit ");
             string answer = Console.ReadLine();
-            if (answer != "quit")
+            if (answer == "quit")
+            {
+                quit = true;
+            }   
+            else if (answer != "quit" && scripture.IsCompletelyHidden() == true)
+            {
+                quit = true;
+            }
+            else 
             {
                 quit = false;
-            }
-            else 
-            {
-                quit = true;
-            }
-
-            //check if every word is hidden
-            if (scripture.IsCompletelyHidden() == true)
-            {
-                //hide 3 random words
                 scripture.HideRandomWords(3);
-            }
-            else 
-            {
-                quit = true;
             }
             
         } while (quit == false);
+        Console.Clear();
+        Console.WriteLine("Goodbye.");
     }
 }
 
@@ -122,7 +118,10 @@ class Scripture
         foreach (Word word in _words)
         {
             bool hidden = word.IsHidden();
-            hiddenCount += 1;
+            if (hidden == true)
+            {
+                hiddenCount += 1;
+            }
         }
         if (hiddenCount == _words.Count)
         {
